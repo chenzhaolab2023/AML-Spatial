@@ -1,0 +1,104 @@
+configfile: "snakemake_config_files/config_picasso.yaml"
+
+P51_filenames = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22']
+P52_filenames = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25']
+P53_filenames = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25']
+P56_filenames = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25']
+P57_filenames = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22']
+P58_filenames = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
+
+localrules: all
+    
+rule all:
+    input:
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/4_CelltypesByTranscript/visualize_all_celltypes_nolabels/P51_FOV{p51name}.png", p51name=P51_filenames),
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/4_CelltypesByTranscript/visualize_all_celltypes_nolabels/P52_FOV{p52name}.png", p52name=P52_filenames),
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/4_CelltypesByTranscript/visualize_all_celltypes_nolabels/P53_FOV{p53name}.png", p53name=P53_filenames),
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/4_CelltypesByTranscript/visualize_all_celltypes_nolabels/P56_FOV{p56name}.png", p56name=P56_filenames),
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/4_CelltypesByTranscript/visualize_all_celltypes_nolabels/P57_FOV{p57name}.png", p57name=P57_filenames),
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/4_CelltypesByTranscript/visualize_all_celltypes_nolabels/P58_FOV{p58name}.png", p58name=P58_filenames)
+
+
+rule P51_overlay:
+    input:
+        '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F0{p51name}_normalized_cp_masks.tif'
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/4_CelltypesByTranscript/visualize_all_celltypes_nolabels/P51_FOV{p51name}.png"
+    params:
+        "{p51name}",
+        "p1"
+    threads: 2
+    resources: mem_mb=15000, runtime=180
+    script:
+        "snakemake_scripts/Generate_detailed_celltype_overlays_nolabels.py"
+        
+        
+rule P52_overlay:
+    input:
+        '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P52_hybrid/labels_predicted_2_15_24/20220215_094003_S1_C902_P99_N99_F0{p52name}_normalized_cp_masks.tif'
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/4_CelltypesByTranscript/visualize_all_celltypes_nolabels/P52_FOV{p52name}.png"
+    params:
+        "{p52name}",
+        "p2"
+    threads: 2
+    resources: mem_mb=15000, runtime=180
+    script:
+        "snakemake_scripts/Generate_detailed_celltype_overlays_nolabels.py"
+        
+        
+rule P53_overlay:
+    input:
+        '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P53_hybrid/labels_predicted_2_15_24/20220215_094003_S2_C902_P99_N99_F0{p53name}_normalized_cp_masks.tif'
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/4_CelltypesByTranscript/visualize_all_celltypes_nolabels/P53_FOV{p53name}.png"
+    params:
+        "{p53name}",
+        "p3"
+    threads: 2
+    resources: mem_mb=15000, runtime=180
+    script:
+        "snakemake_scripts/Generate_detailed_celltype_overlays_nolabels.py"
+        
+        
+rule P56_overlay:
+    input:
+        '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P56_hybrid/labels_predicted_2_15_24/20220228_110038_S2_C902_P99_N99_F0{p56name}_normalized_cp_masks.tif'
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/4_CelltypesByTranscript/visualize_all_celltypes_nolabels/P56_FOV{p56name}.png"
+    params:
+        "{p56name}",
+        "p4"
+    threads: 2
+    resources: mem_mb=15000, runtime=180
+    script:
+        "snakemake_scripts/Generate_detailed_celltype_overlays_nolabels.py"
+        
+        
+rule P57_overlay:
+    input:
+        '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P57_hybrid/labels_predicted_2_15_24/20220228_110038_S3_C902_P99_N99_F0{p57name}_normalized_cp_masks.tif'
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/4_CelltypesByTranscript/visualize_all_celltypes_nolabels/P57_FOV{p57name}.png"
+    params:
+        "{p57name}",
+        "p5"
+    threads: 2
+    resources: mem_mb=15000, runtime=180
+    script:
+        "snakemake_scripts/Generate_detailed_celltype_overlays_nolabels.py"
+        
+        
+rule P58_overlay:
+    input:
+        '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P58_hybrid/labels_predicted_2_15_24/20220215_094003_S3_C902_P99_N99_F0{p58name}_normalized_cp_masks.tif'
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/4_CelltypesByTranscript/visualize_all_celltypes_nolabels/P58_FOV{p58name}.png"
+    params:
+        "{p58name}",
+        "p6"
+    threads: 2
+    resources: mem_mb=15000, runtime=180
+    script:
+        "snakemake_scripts/Generate_detailed_celltype_overlays_nolabels.py"
+

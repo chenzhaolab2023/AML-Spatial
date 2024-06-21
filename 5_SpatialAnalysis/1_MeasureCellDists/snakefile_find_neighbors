@@ -1,0 +1,84 @@
+# This snakefile submits cell edge-edge distance calculations to the cluster for each FOV independently to parallelize and speed up the process.
+
+configfile: "snakemake_config_files/config_picasso.yaml"
+
+P51_filenames = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22']
+P52_filenames = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25']
+P53_filenames = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25']
+P56_filenames = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25']
+P57_filenames = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22']
+P58_filenames = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
+
+localrules: all
+    
+rule all:
+    input:
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/5_SpatialAnalysis/1_MeasureCellDists/cell-cell_distances/P51_FOV{p51name}_cell_contacts.csv", p51name=P51_filenames),
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/5_SpatialAnalysis/1_MeasureCellDists/cell-cell_distances/P52_FOV{p52name}_cell_contacts.csv", p52name=P52_filenames),
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/5_SpatialAnalysis/1_MeasureCellDists/cell-cell_distances/P53_FOV{p53name}_cell_contacts.csv", p53name=P53_filenames),
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/5_SpatialAnalysis/1_MeasureCellDists/cell-cell_distances/P56_FOV{p56name}_cell_contacts.csv", p56name=P56_filenames),
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/5_SpatialAnalysis/1_MeasureCellDists/cell-cell_distances/P57_FOV{p57name}_cell_contacts.csv", p57name=P57_filenames),
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/5_SpatialAnalysis/1_MeasureCellDists/cell-cell_distances/P58_FOV{p58name}_cell_contacts.csv", p58name=P58_filenames)
+
+rule P51_dist:
+    input:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F0{p51name}_normalized_cp_masks.tif"
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/5_SpatialAnalysis/1_MeasureCellDists/cell-cell_distances/P51_FOV{p51name}_cell_contacts.csv"
+    threads: 2
+    resources: mem_mb=20000, runtime=240
+    script:
+        "snakemake_scripts/Cell-cell-contourDist.py"
+
+rule P52_dist:
+    input:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P52_hybrid/labels_predicted_2_15_24/20220215_094003_S1_C902_P99_N99_F0{p52name}_normalized_cp_masks.tif"
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/5_SpatialAnalysis/1_MeasureCellDists/cell-cell_distances/P52_FOV{p52name}_cell_contacts.csv"
+    threads: 2
+    resources: mem_mb=20000, runtime=480
+    script:
+        "snakemake_scripts/Cell-cell-contourDist.py"
+        
+rule P53_dist:
+    input:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P53_hybrid/labels_predicted_2_15_24/20220215_094003_S2_C902_P99_N99_F0{p53name}_normalized_cp_masks.tif"
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/5_SpatialAnalysis/1_MeasureCellDists/cell-cell_distances/P53_FOV{p53name}_cell_contacts.csv"
+    threads: 2
+    resources: mem_mb=20000, runtime=480
+    script:
+        "snakemake_scripts/Cell-cell-contourDist.py"
+        
+rule P56_dist:
+    input:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P56_hybrid/labels_predicted_2_15_24/20220228_110038_S2_C902_P99_N99_F0{p56name}_normalized_cp_masks.tif"
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/5_SpatialAnalysis/1_MeasureCellDists/cell-cell_distances/P56_FOV{p56name}_cell_contacts.csv"
+    threads: 2
+    resources: mem_mb=20000, runtime=240
+    script:
+        "snakemake_scripts/Cell-cell-contourDist.py"
+        
+rule P57_dist:
+    input:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P57_hybrid/labels_predicted_2_15_24/20220228_110038_S3_C902_P99_N99_F0{p57name}_normalized_cp_masks.tif"
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/5_SpatialAnalysis/1_MeasureCellDists/cell-cell_distances/P57_FOV{p57name}_cell_contacts.csv"
+    threads: 2
+    resources: mem_mb=20000, runtime=240
+    script:
+        "snakemake_scripts/Cell-cell-contourDist.py"
+        
+rule P58_dist:
+    input:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P58_hybrid/labels_predicted_2_15_24/20220215_094003_S3_C902_P99_N99_F0{p58name}_normalized_cp_masks.tif"
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/5_SpatialAnalysis/1_MeasureCellDists/cell-cell_distances/P58_FOV{p58name}_cell_contacts.csv"
+    threads: 2
+    resources: mem_mb=20000, runtime=480
+    script:
+        "snakemake_scripts/Cell-cell-contourDist.py"
+        
+        
+        

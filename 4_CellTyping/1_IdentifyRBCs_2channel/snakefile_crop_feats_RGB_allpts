@@ -1,0 +1,109 @@
+configfile: "snakemake_config_files/config_crop_feats.yaml"
+
+P51_FOVs = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22']
+P52_FOVs = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25']
+P53_FOVs = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25']
+P56_FOVs = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25']
+P57_FOVs = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21']
+P58_FOVs = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
+
+localrules: all
+    
+rule all:
+    input:
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/1_IdentifyRBCs_2channel/P51/Normalized_RGB_feats/P51_FOV{fovs}_RGB_feats.csv", fovs=P51_FOVs),
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/1_IdentifyRBCs_2channel/P52/Normalized_RGB_feats/P52_FOV{fovs}_RGB_feats.csv", fovs=P52_FOVs),
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/1_IdentifyRBCs_2channel/P53/Normalized_RGB_feats/P53_FOV{fovs}_RGB_feats.csv", fovs=P53_FOVs),
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/1_IdentifyRBCs_2channel/P56/Normalized_RGB_feats/P56_FOV{fovs}_RGB_feats.csv", fovs=P56_FOVs),
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/1_IdentifyRBCs_2channel/P57/Normalized_RGB_feats/P57_FOV{fovs}_RGB_feats.csv", fovs=P57_FOVs),
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/1_IdentifyRBCs_2channel/P58/Normalized_RGB_feats/P58_FOV{fovs}_RGB_feats.csv", fovs=P58_FOVs)
+        
+
+rule feats_P51:
+    input:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/1_Normalization/0_NormalizedImg/P51_R1158_S1_Normalized/20220228_173209_S1_C902_P99_N99_F0{fovs}_normalized.png",
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F0{fovs}_normalized_cp_masks.tif"
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/1_IdentifyRBCs_2channel/P51/Normalized_RGB_feats/P51_FOV{fovs}_RGB_feats.csv"
+    params:
+        "P51",
+        "{fovs}"
+    threads: 2
+    resources: runtime=60, mem_mb=100000, gpu=1, gpu_model="v100x"
+    script:
+        "snakemake_scripts/RGB_crops_to_feats.py"
+
+
+rule feats_P52:
+    input:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/1_Normalization/0_NormalizedImg/P52_R1149_S1_Normalized/20220215_094003_S1_C902_P99_N99_F0{fovs}_normalized.png",
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P52_hybrid/labels_predicted_2_15_24/20220215_094003_S1_C902_P99_N99_F0{fovs}_normalized_cp_masks.tif"
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/1_IdentifyRBCs_2channel/P52/Normalized_RGB_feats/P52_FOV{fovs}_RGB_feats.csv"
+    params:
+        "P52",
+        "{fovs}"
+    threads: 2
+    resources: runtime=60, mem_mb=100000, gpu=1, gpu_model="v100x"
+    script:
+        "snakemake_scripts/RGB_crops_to_feats.py"   
+
+
+rule feats_P53:
+    input:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/1_Normalization/0_NormalizedImg/P53_R1149_S2_Normalized/20220215_094003_S2_C902_P99_N99_F0{fovs}_normalized.png",
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P53_hybrid/labels_predicted_2_15_24/20220215_094003_S2_C902_P99_N99_F0{fovs}_normalized_cp_masks.tif"
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/1_IdentifyRBCs_2channel/P53/Normalized_RGB_feats/P53_FOV{fovs}_RGB_feats.csv"
+    params:
+        "P53",
+        "{fovs}"
+    threads: 2
+    resources: runtime=60, mem_mb=100000, gpu=1, gpu_model="v100x"
+    script:
+        "snakemake_scripts/RGB_crops_to_feats.py" 
+
+
+rule feats_P56:
+    input:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/1_Normalization/0_NormalizedImg/P56_R1158_S2_Normalized/20220228_110038_S2_C902_P99_N99_F0{fovs}_normalized.png",
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P56_hybrid/labels_predicted_2_15_24/20220228_110038_S2_C902_P99_N99_F0{fovs}_normalized_cp_masks.tif"
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/1_IdentifyRBCs_2channel/P56/Normalized_RGB_feats/P56_FOV{fovs}_RGB_feats.csv"
+    params:
+        "P56",
+        "{fovs}"
+    threads: 2
+    resources: runtime=60, mem_mb=100000, gpu=1, gpu_model="v100x"
+    script:
+        "snakemake_scripts/RGB_crops_to_feats.py" 
+
+
+rule feats_P57:
+    input:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/1_Normalization/0_NormalizedImg/P57_R1158_S3_Normalized/20220228_110038_S3_C902_P99_N99_F0{fovs}_normalized.png",
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P57_hybrid/labels_predicted_2_15_24/20220228_110038_S3_C902_P99_N99_F0{fovs}_normalized_cp_masks.tif"
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/1_IdentifyRBCs_2channel/P57/Normalized_RGB_feats/P57_FOV{fovs}_RGB_feats.csv"
+    params:
+        "P57",
+        "{fovs}"
+    threads: 2
+    resources: runtime=60, mem_mb=100000, gpu=1, gpu_model="v100x"
+    script:
+        "snakemake_scripts/RGB_crops_to_feats.py" 
+
+
+rule feats_P58:
+    input:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/1_Normalization/0_NormalizedImg/P58_R1149_S3_Normalized/20220215_094003_S3_C902_P99_N99_F0{fovs}_normalized.png",
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P58_hybrid/labels_predicted_2_15_24/20220215_094003_S3_C902_P99_N99_F0{fovs}_normalized_cp_masks.tif"
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/1_IdentifyRBCs_2channel/P58/Normalized_RGB_feats/P58_FOV{fovs}_RGB_feats.csv"
+    params:
+        "P58",
+        "{fovs}"
+    threads: 2
+    resources: runtime=60, mem_mb=100000, gpu=1, gpu_model="v100x"
+    script:
+        "snakemake_scripts/RGB_crops_to_feats.py" 

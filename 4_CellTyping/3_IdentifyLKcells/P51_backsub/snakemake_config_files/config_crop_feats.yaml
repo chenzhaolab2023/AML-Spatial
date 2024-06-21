@@ -1,0 +1,12 @@
+restart-times: 0
+jobscript: slurm_jobscript.sh
+cluster: bw_submit.py
+cluster-status: bw_status.py
+max-jobs-per-second: 1
+max-status-checks-per-second: 0.01
+local-cores: 2
+latency-wait: 240
+jobs: 25
+keep-going: True
+rerun-incomplete: True
+verbose: True

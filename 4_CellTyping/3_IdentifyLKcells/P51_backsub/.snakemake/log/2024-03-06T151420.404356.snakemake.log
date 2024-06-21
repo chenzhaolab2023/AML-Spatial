@@ -1,0 +1,653 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 45
+Job stats:
+job          count    min threads    max threads
+---------  -------  -------------  -------------
+all              1              1              1
+feats_P51       22              2              2
+total           23              1              2
+
+Resources before job selection: {'_cores': 9223372036854775807, '_nodes': 45}
+Ready jobs (22)
+Select jobs to execute...
+Selected jobs (22)
+Resources after job selection: {'_cores': 9223372036854775763, '_nodes': 23}
+
+[Wed Mar  6 15:14:22 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F001_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F001_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV01_CD34_feats.csv
+    jobid: 1
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV01_CD34_feats.csv
+    wildcards: fovs=01
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F001_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F001_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV01_CD34_feats.csv"], "wildcards": {"fovs": "01"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 1, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=01' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F001_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F001_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 1 with external jobid '21322337'.
+
+[Wed Mar  6 15:14:24 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F011_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F011_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV11_CD34_feats.csv
+    jobid: 11
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV11_CD34_feats.csv
+    wildcards: fovs=11
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F011_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F011_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV11_CD34_feats.csv"], "wildcards": {"fovs": "11"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 11, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=11' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F011_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F011_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 11 with external jobid '21322338'.
+
+[Wed Mar  6 15:14:26 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F005_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F005_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV05_CD34_feats.csv
+    jobid: 5
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV05_CD34_feats.csv
+    wildcards: fovs=05
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F005_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F005_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV05_CD34_feats.csv"], "wildcards": {"fovs": "05"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 5, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=05' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F005_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F005_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 5 with external jobid '21322339'.
+
+[Wed Mar  6 15:14:29 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F019_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F019_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV19_CD34_feats.csv
+    jobid: 19
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV19_CD34_feats.csv
+    wildcards: fovs=19
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F019_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F019_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV19_CD34_feats.csv"], "wildcards": {"fovs": "19"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 19, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=19' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F019_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F019_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 19 with external jobid '21322342'.
+
+[Wed Mar  6 15:14:31 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F012_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F012_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV12_CD34_feats.csv
+    jobid: 12
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV12_CD34_feats.csv
+    wildcards: fovs=12
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F012_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F012_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV12_CD34_feats.csv"], "wildcards": {"fovs": "12"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 12, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=12' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F012_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F012_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 12 with external jobid '21322343'.
+
+[Wed Mar  6 15:14:34 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F018_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F018_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV18_CD34_feats.csv
+    jobid: 18
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV18_CD34_feats.csv
+    wildcards: fovs=18
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F018_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F018_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV18_CD34_feats.csv"], "wildcards": {"fovs": "18"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 18, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=18' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F018_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F018_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 18 with external jobid '21322354'.
+
+[Wed Mar  6 15:14:36 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F020_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F020_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV20_CD34_feats.csv
+    jobid: 20
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV20_CD34_feats.csv
+    wildcards: fovs=20
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F020_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F020_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV20_CD34_feats.csv"], "wildcards": {"fovs": "20"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 20, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=20' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F020_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F020_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 20 with external jobid '21322356'.
+
+[Wed Mar  6 15:14:37 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F006_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F006_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV06_CD34_feats.csv
+    jobid: 6
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV06_CD34_feats.csv
+    wildcards: fovs=06
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F006_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F006_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV06_CD34_feats.csv"], "wildcards": {"fovs": "06"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 6, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=06' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F006_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F006_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 6 with external jobid '21322357'.
+
+[Wed Mar  6 15:14:39 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F013_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F013_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV13_CD34_feats.csv
+    jobid: 13
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV13_CD34_feats.csv
+    wildcards: fovs=13
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F013_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F013_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV13_CD34_feats.csv"], "wildcards": {"fovs": "13"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 13, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=13' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F013_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F013_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 13 with external jobid '21322360'.
+
+[Wed Mar  6 15:14:40 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F007_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F007_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV07_CD34_feats.csv
+    jobid: 7
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV07_CD34_feats.csv
+    wildcards: fovs=07
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F007_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F007_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV07_CD34_feats.csv"], "wildcards": {"fovs": "07"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 7, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=07' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F007_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F007_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 7 with external jobid '21322363'.
+
+[Wed Mar  6 15:14:41 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F021_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F021_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV21_CD34_feats.csv
+    jobid: 21
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV21_CD34_feats.csv
+    wildcards: fovs=21
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F021_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F021_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV21_CD34_feats.csv"], "wildcards": {"fovs": "21"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 21, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=21' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F021_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F021_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 21 with external jobid '21322365'.
+
+[Wed Mar  6 15:14:43 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F014_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F014_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV14_CD34_feats.csv
+    jobid: 14
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV14_CD34_feats.csv
+    wildcards: fovs=14
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F014_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F014_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV14_CD34_feats.csv"], "wildcards": {"fovs": "14"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 14, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=14' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F014_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F014_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 14 with external jobid '21322366'.
+
+[Wed Mar  6 15:14:44 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F022_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F022_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV22_CD34_feats.csv
+    jobid: 22
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV22_CD34_feats.csv
+    wildcards: fovs=22
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F022_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F022_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV22_CD34_feats.csv"], "wildcards": {"fovs": "22"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 22, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=22' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F022_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F022_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 22 with external jobid '21322367'.
+
+[Wed Mar  6 15:14:46 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F008_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F008_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV08_CD34_feats.csv
+    jobid: 8
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV08_CD34_feats.csv
+    wildcards: fovs=08
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F008_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F008_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV08_CD34_feats.csv"], "wildcards": {"fovs": "08"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 8, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=08' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F008_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F008_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 8 with external jobid '21322368'.
+
+[Wed Mar  6 15:14:47 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F003_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F003_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV03_CD34_feats.csv
+    jobid: 3
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV03_CD34_feats.csv
+    wildcards: fovs=03
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F003_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F003_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV03_CD34_feats.csv"], "wildcards": {"fovs": "03"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 3, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=03' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F003_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F003_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 3 with external jobid '21322370'.
+
+[Wed Mar  6 15:14:48 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F015_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F015_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV15_CD34_feats.csv
+    jobid: 15
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV15_CD34_feats.csv
+    wildcards: fovs=15
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F015_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F015_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV15_CD34_feats.csv"], "wildcards": {"fovs": "15"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 15, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=15' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F015_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F015_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 15 with external jobid '21322372'.
+
+[Wed Mar  6 15:14:50 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F009_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F009_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV09_CD34_feats.csv
+    jobid: 9
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV09_CD34_feats.csv
+    wildcards: fovs=09
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F009_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F009_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV09_CD34_feats.csv"], "wildcards": {"fovs": "09"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 9, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=09' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F009_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F009_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 9 with external jobid '21322373'.
+
+[Wed Mar  6 15:14:51 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F016_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F016_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV16_CD34_feats.csv
+    jobid: 16
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV16_CD34_feats.csv
+    wildcards: fovs=16
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F016_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F016_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV16_CD34_feats.csv"], "wildcards": {"fovs": "16"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 16, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=16' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F016_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F016_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 16 with external jobid '21322374'.
+
+[Wed Mar  6 15:14:53 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F010_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F010_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV10_CD34_feats.csv
+    jobid: 10
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV10_CD34_feats.csv
+    wildcards: fovs=10
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F010_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F010_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV10_CD34_feats.csv"], "wildcards": {"fovs": "10"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 10, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=10' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F010_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F010_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 10 with external jobid '21322376'.
+
+[Wed Mar  6 15:14:54 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F002_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F002_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV02_CD34_feats.csv
+    jobid: 2
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV02_CD34_feats.csv
+    wildcards: fovs=02
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F002_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F002_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV02_CD34_feats.csv"], "wildcards": {"fovs": "02"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 2, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=02' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F002_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F002_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 2 with external jobid '21322377'.
+
+[Wed Mar  6 15:14:56 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F017_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F017_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV17_CD34_feats.csv
+    jobid: 17
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV17_CD34_feats.csv
+    wildcards: fovs=17
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F017_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F017_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV17_CD34_feats.csv"], "wildcards": {"fovs": "17"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 17, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=17' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F017_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F017_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 17 with external jobid '21322378'.
+
+[Wed Mar  6 15:14:57 2024]
+rule feats_P51:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F004_CD34_backgrndSub.png, /data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F004_normalized_cp_masks.tif
+    output: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV04_CD34_feats.csv
+    jobid: 4
+    reason: Missing output files: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV04_CD34_feats.csv
+    wildcards: fovs=04
+    threads: 2
+    resources: mem_mb=100000, mem_mib=95368, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, runtime=60, gpu=1, gpu_model=v100x
+
+Jobscript:
+#!/bin/bash
+# properties = {"type": "single", "rule": "feats_P51", "local": false, "input": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F004_CD34_backgrndSub.png", "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F004_normalized_cp_masks.tif"], "output": ["/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV04_CD34_feats.csv"], "wildcards": {"fovs": "04"}, "params": {}, "log": [], "threads": 2, "resources": {"mem_mb": 100000, "mem_mib": 95368, "disk_mb": 1000, "disk_mib": 954, "tmpdir": "<TBD>", "runtime": 60, "gpu": 1, "gpu_model": "v100x"}, "jobid": 4, "cluster": {}}
+
+# if lscratch exists use it for tempdir
+if [[ -d "/lscratch/$SLURM_JOB_ID" ]] ; then
+    tmp="/lscratch/$SLURM_JOB_ID/tmp"
+    mkdir "$tmp"
+    export TMPDIR="$tmp"
+fi
+
+cd '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub' && /usr/local/Anaconda/envs/py3.9/bin/python3.9 -m snakemake --snakefile '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/snakefile_crop_feats_CD34_P51_backsub' --target-jobs 'feats_P51:fovs=04' --allowed-rules 'feats_P51' --cores 'all' --attempt 1 --force-use-threads  --resources 'mem_mb=100000' 'mem_mib=95368' 'disk_mb=1000' 'disk_mib=954' 'gpu=1' --wait-for-files '/gpfs/gsfs12/users/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/.snakemake/tmp.ipwfb5th' '/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F004_CD34_backgrndSub.png' '/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F004_normalized_cp_masks.tif' --force --keep-target-files --keep-remote --max-inventory-time 0 --nocolor --notemp --no-hooks --nolock --ignore-incomplete --rerun-triggers 'software-env' 'input' 'params' 'code' 'mtime' --skip-script-cleanup  --conda-frontend 'mamba' --wrapper-prefix 'https://github.com/snakemake/snakemake-wrappers/raw/' --latency-wait 1200 --scheduler 'ilp' --scheduler-solver-path '/usr/local/Anaconda/envs/py3.9/bin' --default-resources 'mem_mb=max(2*input.size_mb, 1000)' 'disk_mb=max(2*input.size_mb, 1000)' 'tmpdir=system_tmpdir' --mode 2 && exit 0 || exit 1
+
+Submitted job 4 with external jobid '21322380'.
+[Wed Mar  6 15:17:53 2024]
+Finished job 5.
+1 of 23 steps (4%) done
+[Wed Mar  6 15:19:32 2024]
+Finished job 19.
+2 of 23 steps (9%) done
+[Wed Mar  6 15:21:12 2024]
+Finished job 12.
+3 of 23 steps (13%) done
+[Wed Mar  6 15:22:52 2024]
+Finished job 18.
+4 of 23 steps (17%) done
+[Wed Mar  6 15:24:32 2024]
+Finished job 20.
+5 of 23 steps (22%) done
+[Wed Mar  6 15:26:13 2024]
+Finished job 6.
+6 of 23 steps (26%) done
+[Wed Mar  6 15:27:53 2024]
+Finished job 13.
+7 of 23 steps (30%) done
+[Wed Mar  6 15:29:33 2024]
+Finished job 7.
+8 of 23 steps (35%) done
+[Wed Mar  6 15:31:13 2024]
+Finished job 21.
+9 of 23 steps (39%) done
+[Wed Mar  6 15:32:53 2024]
+Finished job 14.
+10 of 23 steps (43%) done
+[Wed Mar  6 15:34:33 2024]
+Finished job 22.
+11 of 23 steps (48%) done
+[Wed Mar  6 15:36:13 2024]
+Finished job 8.
+12 of 23 steps (52%) done
+[Wed Mar  6 15:37:53 2024]
+Finished job 3.
+13 of 23 steps (57%) done
+[Wed Mar  6 15:39:33 2024]
+Finished job 15.
+14 of 23 steps (61%) done
+[Wed Mar  6 15:41:13 2024]
+Finished job 9.
+15 of 23 steps (65%) done
+[Wed Mar  6 15:42:54 2024]
+Finished job 16.
+16 of 23 steps (70%) done
+[Wed Mar  6 15:44:34 2024]
+Finished job 10.
+17 of 23 steps (74%) done
+[Wed Mar  6 15:46:14 2024]
+Finished job 2.
+18 of 23 steps (78%) done
+[Wed Mar  6 15:47:54 2024]
+Finished job 17.
+19 of 23 steps (83%) done
+[Wed Mar  6 15:49:34 2024]
+Finished job 4.
+20 of 23 steps (87%) done
+[Wed Mar  6 15:51:14 2024]
+Finished job 1.
+21 of 23 steps (91%) done
+[Wed Mar  6 15:52:54 2024]
+Finished job 11.
+22 of 23 steps (96%) done
+Resources before job selection: {'_cores': 9223372036854775807, '_nodes': 45}
+Ready jobs (1)
+Select jobs to execute...
+Using greedy selector because only single job has to be scheduled.
+Selected jobs (1)
+Resources after job selection: {'_cores': 9223372036854775806, '_nodes': 44}
+
+[Wed Mar  6 15:52:54 2024]
+localrule all:
+    input: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV01_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV02_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV03_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV04_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV05_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV06_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV07_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV08_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV09_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV10_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV11_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV12_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV13_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV14_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV15_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV16_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV17_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV18_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV19_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV20_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV21_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV22_CD34_feats.csv
+    jobid: 0
+    reason: Input files updated by another job: /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV02_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV14_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV01_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV07_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV11_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV15_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV13_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV05_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV19_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV04_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV09_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV10_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV22_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV03_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV12_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV18_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV21_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV06_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV20_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV17_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV16_CD34_feats.csv, /data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV08_CD34_feats.csv
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=/tmp
+
+[Wed Mar  6 15:52:54 2024]
+Finished job 0.
+23 of 23 steps (100%) done
+Complete log: .snakemake/log/2024-03-06T151420.404356.snakemake.log
+unlocking
+removing lock
+removing lock
+removed all locks

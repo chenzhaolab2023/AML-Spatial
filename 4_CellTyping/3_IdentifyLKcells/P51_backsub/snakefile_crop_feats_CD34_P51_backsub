@@ -1,0 +1,26 @@
+configfile: "snakemake_config_files/config_crop_feats.yaml"
+
+P51_FOVs = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22']
+
+localrules: all
+    
+rule all:
+    input:
+        expand("/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV{fovs}_CD34_feats.csv", fovs=P51_FOVs)
+        
+
+rule feats_P51:
+    input:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/CD34_no_background/20220228_173209_S1_C902_P99_N99_F0{fovs}_CD34_backgrndSub.png",
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/2_Segmentation/3_NucMemMerging/P51_hybrid/labels_predicted_2_15_24/20220228_173209_S1_C902_P99_N99_F0{fovs}_normalized_cp_masks.tif"
+    output:
+        "/data/Zhaolab/1_AMLCosMx/Final_scripts/4_CellTyping/3_IdentifyLKcells/P51_backsub/Normalized_CD34_feats/P51_FOV{fovs}_CD34_feats.csv"
+    params:
+        "P51",
+        "{fovs}"
+    threads: 2
+    resources: runtime=60, mem_mb=100000, gpu=1, gpu_model="v100x"
+    script:
+        "snakemake_scripts/CD34_backsub_crops_to_feats.py"
+
+
