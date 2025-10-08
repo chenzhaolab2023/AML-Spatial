@@ -1,6 +1,8 @@
-This contains all jupyter notebooks, python scripts and R codes used for 
+This contains all jupyter notebooks, python scripts , models and R codes used for 
 
 Single Cell Spatial Transcriptomics Reveals Immunotherapy-Driven Bone Marrow Niche Remodeling in AML
-https://www.biorxiv.org/content/10.1101/2025.01.24.634753v1
 
+Sci Adv. 2025 Jul 11;11(28):eadw4871. doi: 10.1126/sciadv.adw4871. Epub 2025 Jul 9.
+
+https://www.science.org/doi/10.1126/sciadv.adw4871?url_ver=Z39.88-2003&rfr_id=ori:rid:crossref.org&rfr_dat=cr_pub%20%200pubmed
 ![Graphic Abstract](https://github.com/chenzhaolab2023/AML-Spatial/blob/main/Smallsize_GraphAbstract.png)
